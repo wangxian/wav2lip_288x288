@@ -20,7 +20,7 @@ We have done the following work:
   </b>
 </p> 
   <p align='center'>  
-    <img src='576x576-CorrespondingVideo.jpg' width='1000'/>
+    <img src='picture/expert_loss.png' width='1000'/>
   </p>
 
 # Release Plan
