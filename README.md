@@ -1,5 +1,5 @@
 # wav2lip_288x288 introduction
-This is a project about talking faces. We use288X288 sized facial images for training, which can generate720p, 1080p, 2k,  human videos.
+This is a project about talking faces. We use288X288 sized facial images for training, which can generate720p, 1080p, 2k Digital Humanhuman videos.
 We have done the following work:
 1. Add video cutting codes.
 2. Add filelists to generate code.
@@ -56,3 +56,7 @@ Thank you for their wonderful work.
 https://github.com/primepake/wav2lip_288x288
 https://github.com/Rudrabha/Wav2Lip
 Thank the above two authors, Thank you for their wonderful work.
+
+# Disclaimers
+The above code and weights can only be used for personal/research/non-commercial purposes.
+If you need a higher definition model, please contact me by email 277504483@qq.com , or add WeChat for communication: langzizhixinkeji
