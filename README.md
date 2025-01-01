@@ -51,6 +51,6 @@ https://github.com/primepake/wav2lip_288x288
 https://github.com/Rudrabha/Wav2Lip
 
 # Disclaimers
-This repositories made by langzizhixin from Langzizhixin Technology company in Chengdu, China, 2025.1.1 .
+This repositories made by langzizhixin from Langzizhixin Technology company 2025.1.1 , in Chengdu, China .
 The above code and weights can only be used for personal/research/non-commercial purposes.
 If you need a higher definition model, please contact me by email 277504483@qq.com , or add WeChat for communication: langzizhixinkeji
