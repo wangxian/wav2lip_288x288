@@ -45,16 +45,12 @@ Pre training checkpoints for wav2lip_288x288 will be released in January 2025.
 Pre training checkpoints for wav2lip_384x384 will be released in February 2025.
 Pre training checkpoints for wav2lip_576x576 or 512x512 will be released in June 2025.
 
-
-# author
-Project  made by langzizhixin from Langzizhixin Technology company in Chengdu, China, 2025.1.1
-
-
 # Citing
 Thank the two authors, Thank you for their wonderful work.
 https://github.com/primepake/wav2lip_288x288
 https://github.com/Rudrabha/Wav2Lip
 
 # Disclaimers
+This repositories made by langzizhixin from Langzizhixin Technology company in Chengdu, China, 2025.1.1
 The above code and weights can only be used for personal/research/non-commercial purposes.
 If you need a higher definition model, please contact me by email 277504483@qq.com , or add WeChat for communication: langzizhixinkeji
