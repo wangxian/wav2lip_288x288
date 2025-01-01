@@ -51,11 +51,9 @@ Project  made by langzizhixin from Langzizhixin Technology company in Chengdu, C
 
 
 # Citing
-Thank you for their wonderful work.
-
+Thank the two authors, Thank you for their wonderful work.
 https://github.com/primepake/wav2lip_288x288
 https://github.com/Rudrabha/Wav2Lip
-Thank the above two authors, Thank you for their wonderful work.
 
 # Disclaimers
 The above code and weights can only be used for personal/research/non-commercial purposes.
