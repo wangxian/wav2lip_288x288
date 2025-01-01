@@ -20,12 +20,12 @@ We have done the following work:
   </b>
 </p> 
   <p align='center'>  
-    <img src='picture/sample-01.jpg' width='500'/>
-    <img src='picture/sample-01.jpg' width='500'/>
-    <img src='picture/sample-01.jpg' width='500'/>
-    <img src='picture/sample-01.jpg' width='500'/>
-    <img src='picture/expert_loss.png' width='500'/>
-    <img src='picture/syncnet_loss.png' width='500'/>
+    <img src='picture/sample-01.jpg' width='600'/>
+    <img src='picture/sample-02.jpg' width='600'/>
+    <img src='picture/sample-03.jpg' width='600'/>
+    <img src='picture/sample-04.jpg' width='600'/>
+    <img src='picture/expert_loss.png' width='600'/>
+    <img src='picture/syncnet_loss.png' width='600'/>
   </p>
 
 # Release Plan
