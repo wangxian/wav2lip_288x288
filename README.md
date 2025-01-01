@@ -28,13 +28,13 @@ We have done the following work:
     <img src='picture/sample-04.jpg' width='600'/>
 </p>
 ## The following images show the loss values of 300000 steps trained by the training generator.
-    <p align='center'>  
+<p align='center'>  
     <img src='picture/expert_loss.png' width='600'/>
-    </p>
+</p>
 ## The following images show the loss values of training the discriminator for 300000 steps.
-    <p align='center'>  
+<p align='center'>  
     <img src='picture/syncnet_loss.png' width='600'/>
-    </p>
+</p>
 
 # Release Plan
 For the wav2lip series, we will continue to train and release higher definition weights in the future.
