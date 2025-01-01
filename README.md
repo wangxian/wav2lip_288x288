@@ -47,7 +47,7 @@ Pre training checkpoints for wav2lip_576x576 or 512x512 will be released in June
 
 
 # author
-Project  made by Lu Rui from Langzizhixin Technology company in Chengdu, China, 2025.1.1
+Project  made by langzizhixin from Langzizhixin Technology company in Chengdu, China, 2025.1.1
 
 
 # Citing
