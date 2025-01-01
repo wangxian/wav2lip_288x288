@@ -41,6 +41,7 @@ We have done the following work:
 # Release Plan
 For the wav2lip series, we will continue to train and release higher definition weights in the future.
 The plan is as follows:
+Pre training checkpoints for wav2lip_288x288 will be released in January 2025.
 Pre training checkpoints for wav2lip_384x384 will be released in February 2025.
 Pre training checkpoints for wav2lip_576x576 or 512x512 will be released in June 2025.
 
