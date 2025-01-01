@@ -1,13 +1,15 @@
-# wav2lip-576x576 introduction
-This is a project about talking faces. We use 576X576 sized facial images for training, which can generate 2k, 4k, 6k, and 8k digital human  videos.
+# wav2lip_288x288 introduction
+This is a project about talking faces. We use288X288 sized facial images for training, which can generate720p, 1080p, 2k,  human videos.
+We have done the following work:
+1. Add or remove video cutting codes.
+2. Add filelists to generate code.
+3. Trained 600 people, 30 hours, and over 30000 pieces of data.
+4. Open sourced the checkpoint for a discriminator with 150000 steps and a val_rass of 0.28.
+5. Open sourced a checkpoint for a generator with 360000 steps and a val_rass of 0.25.
+6. Dear friends, you can load pre training weights for easy subsequent training.
 
-We have optimized in the following areas:
-1. Using Hubert for audio processing, there is a significant improvement compared to wav2lip-96 and wav2lip-288.
-2. Optimized dataset processing, eliminating the need to manually cut videos into seconds.
-3. We have optimized the network structure to better extract features,Our idea is not to train the discriminator separately, but to train the generator directly..
-4. We trained the base model with a high-definition dataset of hundreds of people. Although its generalization ability is not strong, the effect is very good after single or multi person fine-tuning.
 
-# wav2lip-576x576 Project situation
+# wav2lip-288x288 Project situation
 <p align='center'>
   <b>
     <a href="https://www.bilibili.com/video/BV1zK421v7wh/?vd_source=7720ff9e037156b51374d14ee8f76b51">Video </a>
@@ -30,21 +32,12 @@ The code is mainly borrowed from wav2lip, wav2lip-288, wav2lip-384, ER-NeRF, etc
 Thank you for their wonderful work.
 
 # author
-Project  made by Lu Rui from Langzizhixin Technology company in Chengdu, China, 2024.
+Project  made by Lu Rui from Langzizhixin Technology company in Chengdu, China, 2025.1.1
 
 # Code contribution
 At present, the video preprocessing, facial cropping, and audio Hubert processing codes have been completed. Welcome everyone to contribute code related to network structure, training, and inference.
 
-## Citing
-
-To cite this repository:
-
-```bibtex
-@misc{Wav2Lip,
-  author={Rudrabha},
-  title={Wav2Lip: Accurately Lip-syncing Videos In The Wild},
-  year={2020},
-  url={https://github.com/Rudrabha/Wav2Lip}
-}
-```
-
+# Citing
+https://github.com/primepake/wav2lip_288x288
+https://github.com/Rudrabha/Wav2Lip
+Thank the above two authors.
