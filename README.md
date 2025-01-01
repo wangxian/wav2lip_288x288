@@ -16,11 +16,16 @@ We have done the following work:
     | 
     <a href="https://github.com/langzizhixin">Project Page</a>
     |
-    <a href="https://github.com/langzizhixin/wav2lip-576x576">Code</a> 
+    <a href="https://github.com/langzizhixin/wav2lip_288x288">Code</a> 
   </b>
 </p> 
   <p align='center'>  
-    <img src='picture/expert_loss.png' width='1000'/>
+    <img src='picture/sample-01.jpg' width='300'/>
+    <img src='picture/sample-01.jpg' width='300'/>
+    <img src='picture/sample-01.jpg' width='300'/>
+    <img src='picture/sample-01.jpg' width='300'/>
+    <img src='picture/expert_loss.png' width='300'/>
+    <img src='picture/syncnet_loss.png' width='300'/>
   </p>
 
 # Release Plan
