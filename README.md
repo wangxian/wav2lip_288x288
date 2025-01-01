@@ -23,7 +23,10 @@ We have done the following work:
     <img src='576x576-CorrespondingVideo.jpg' width='1000'/>
   </p>
 
-# wav2lip_288x288, wav2lip_384x384,wav2lip_576x576 Release Plan
+# wav2lip_288x288
+# wav2lip_384x384
+# wav2lip_576x576 
+# Release Plan
 For the wav2lip series, we will continue to train and release higher definition weights in the future.
 The plan is as follows:
 Pre training checkpoints for wav2lip_384x384 will be released in February 2025.
