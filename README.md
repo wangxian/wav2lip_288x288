@@ -19,19 +19,22 @@ We have done the following work:
     <a href="https://github.com/langzizhixin/wav2lip_288x288">Code</a> 
   </b>
 </p> 
-  <p align='center'>  
-    </p>
     
-# The following pictures are comparison images of the training generator training 300000 steps.
+## The following pictures are comparison images of the training generator training 300000 steps.
+    <p align='center'>  
     <img src='picture/sample-01.jpg' width='600'/>
     <img src='picture/sample-02.jpg' width='600'/>
     <img src='picture/sample-03.jpg' width='600'/>
     <img src='picture/sample-04.jpg' width='600'/>
-# The following images show the loss values of 300000 steps trained by the training generator.
+    </p>
+## The following images show the loss values of 300000 steps trained by the training generator.
+    <p align='center'>  
     <img src='picture/expert_loss.png' width='600'/>
-# The following images show the loss values of training the discriminator for 300000 steps.
+    </p>
+## The following images show the loss values of training the discriminator for 300000 steps.
+    <p align='center'>  
     <img src='picture/syncnet_loss.png' width='600'/>
-
+    </p>
 
 # Release Plan
 For the wav2lip series, we will continue to train and release higher definition weights in the future.
