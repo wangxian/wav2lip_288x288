@@ -19,7 +19,9 @@ We have done the following work:
     <a href="https://github.com/langzizhixin/wav2lip_288x288">Code</a> 
   </b>
 </p> 
-    
+
+checkpoints for wav2lip_288x288   https://pan.baidu.com/s/1ks53RXFzN56Ksjpxspiwyw?pwd=lzzx 
+
 ## The following pictures are comparison images of the training generator training 300000 steps.
 <p align='center'>  
     <img src='picture/sample-01.jpg' width='600'/>
@@ -44,7 +46,7 @@ The plan is as follows:
 Pre training checkpoints for wav2lip_288x288 will be released in January 2025.
 Pre training checkpoints for wav2lip_384x384 will be released in February 2025.
 Pre training checkpoints for wav2lip_576x576 or 512x512 will be released in June 2025.
-checkpoints for wav2lip_288x288   https://pan.baidu.com/s/1ks53RXFzN56Ksjpxspiwyw?pwd=lzzx 
+
 # Citing
 Thank the two authors, Thank you for their wonderful work.
 https://github.com/primepake/wav2lip_288x288
