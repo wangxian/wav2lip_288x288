@@ -7,13 +7,13 @@ import audio
 import torch
 from torch import nn
 from torch import optim
-import torch.backends.cudnn as cudnn
+import torch.backends.cudnn as cudnn  # noqa
 from torch.utils import data as data_utils
 import numpy as np
 
 from glob import glob
 
-import os, random, cv2, argparse
+import os, random, cv2, argparse  # noqa
 from hparams import hparams, get_image_list
 
 parser = argparse.ArgumentParser(description='Code to train the expert lip-sync discriminator')
@@ -142,7 +142,7 @@ def train(device, model, train_data_loader, test_data_loader, optimizer,
 
     global global_step, global_epoch
     resumed_step = global_step
-    
+
     while global_epoch < nepochs:
         running_loss = 0.
         prog_bar = tqdm(enumerate(train_data_loader))
@@ -238,6 +238,7 @@ def load_checkpoint(path, model, optimizer, reset_optimizer=False):
         if optimizer_state is not None:
             print("Load optimizer state from {}".format(path))
             optimizer.load_state_dict(checkpoint["optimizer"])
+
     global_step = checkpoint["global_step"]
     global_epoch = checkpoint["global_epoch"]
 
