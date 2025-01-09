@@ -86,9 +86,7 @@ hparams = HParams(
     batch_size=16,
     initial_learning_rate=1e-4,
     # ctrl + c, stop whenever eval loss is consistently greater than train loss for ~10 epochs
-    # nepochs=200000000000000000,
-    # for testing
-    nepochs=2000,
+    nepochs=200000000000000000,
     num_workers=20,
     checkpoint_interval=3000,
     eval_interval=3000,
@@ -99,7 +97,10 @@ hparams = HParams(
     syncnet_batch_size=192,
     syncnet_lr=1e-4,
     syncnet_eval_interval=5000,
-    syncnet_checkpoint_interval=5000,
+    # for testing | 多少步保存一次模型
+    # syncnet_checkpoint_interval=5000,
+    syncnet_checkpoint_interval=500,
+
     # syncnet_eval_interval=10000,
     # syncnet_checkpoint_interval=10000,
 

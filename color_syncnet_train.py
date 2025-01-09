@@ -174,6 +174,7 @@ def train(device, model, train_data_loader, test_data_loader, optimizer, checkpo
             cur_session_steps = global_step - resumed_step  # noqa
             running_loss += loss.item()
 
+            # 保存模型
             if global_step == 1 or global_step % checkpoint_interval == 0:
                 save_checkpoint(model, optimizer, global_step, checkpoint_dir, global_epoch)
 
