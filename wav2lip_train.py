@@ -208,6 +208,8 @@ def cosine_loss(a, v, y):
 
 device = torch.device("cuda" if use_cuda else "cpu")
 syncnet = SyncNet().to(device)
+# 小数据量需要执行，要不 eval_model 会报错
+# syncnet.eval()
 for p in syncnet.parameters():
     p.requires_grad = False
 
@@ -252,8 +254,7 @@ def train(device, model, train_data_loader, test_data_loader, optimizer,
 
             l1loss = recon_loss(g, gt)
 
-            loss = hparams.syncnet_wt * sync_loss + \
-                (1 - hparams.syncnet_wt) * l1loss
+            loss = hparams.syncnet_wt * sync_loss + (1 - hparams.syncnet_wt) * l1loss
             loss.backward()
             optimizer.step()
 
@@ -270,15 +271,19 @@ def train(device, model, train_data_loader, test_data_loader, optimizer,
                 running_sync_loss += 0.
 
             if global_step == 1 or global_step % checkpoint_interval == 0:
-                save_checkpoint(
-                    model, optimizer, global_step, checkpoint_dir, global_epoch)
+                save_checkpoint(model, optimizer, global_step, checkpoint_dir, global_epoch)
 
             if global_step == 1 or global_step % hparams.eval_interval == 0:
                 with torch.no_grad():
+                    print(f'global_step={global_step} | eval_model 进行中...')
+                    print('--------------------------')
                     average_sync_loss = eval_model(test_data_loader, global_step, device, model, checkpoint_dir)
+                    print(f'global_step={global_step} | eval_model 结束 | average_sync_loss={average_sync_loss}')
+                    print('--------------------------')
 
                     if average_sync_loss < .75:
                         # without image GAN a lesser weight is sufficient
+                        print('average_sync_loss < .75 set hparams.syncnet_wt=0.01')
                         hparams.set_hparam('syncnet_wt', 0.01)
 
             prog_bar.set_description('L1: {}, Sync Loss: {}'.format(running_l1_loss / (step + 1), running_sync_loss / (step + 1)))
@@ -300,6 +305,7 @@ def eval_model(test_data_loader, global_step, device, model, checkpoint_dir):
             # Move data to CUDA device
             x = x.to(device)
             gt = gt.to(device)
+
             indiv_mels = indiv_mels.to(device)
             mel = mel.to(device)
 
@@ -310,6 +316,11 @@ def eval_model(test_data_loader, global_step, device, model, checkpoint_dir):
 
             sync_losses.append(sync_loss.item())
             recon_losses.append(l1loss.item())
+
+            print('Step: {}, averaged_sync_loss: {}, averaged_recon_loss: {}'
+                  .format(step,
+                          sum(sync_losses) / len(sync_losses),
+                          sum(recon_losses) / len(recon_losses)))
 
             if step > eval_steps:
                 averaged_sync_loss = sum(sync_losses) / len(sync_losses)

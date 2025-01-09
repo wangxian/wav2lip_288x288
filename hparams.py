@@ -88,7 +88,8 @@ hparams = HParams(
     # ctrl + c, stop whenever eval loss is consistently greater than train loss for ~10 epochs
     nepochs=200000000000000000,
     num_workers=20,
-    checkpoint_interval=3000,
+    # checkpoint_interval=3000,
+    checkpoint_interval=100,
     eval_interval=3000,
     save_optimizer_state=True,
 
