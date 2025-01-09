@@ -4,3 +4,7 @@ data/*
 filelists/*
 face_detection/detection/sfd/s3fd.pth
 expert_checkpoints/*
+results/*
+logs/*
+input/*
+checkpoints/*

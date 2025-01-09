@@ -1,4 +1,5 @@
 from os.path import dirname, join, basename, isfile
+import sys
 from tqdm import tqdm
 
 from models import SyncNet_color as SyncNet
@@ -274,15 +275,13 @@ def train(device, model, train_data_loader, test_data_loader, optimizer,
 
             if global_step == 1 or global_step % hparams.eval_interval == 0:
                 with torch.no_grad():
-                    average_sync_loss = eval_model(
-                        test_data_loader, global_step, device, model, checkpoint_dir)
+                    average_sync_loss = eval_model(test_data_loader, global_step, device, model, checkpoint_dir)
 
                     if average_sync_loss < .75:
                         # without image GAN a lesser weight is sufficient
                         hparams.set_hparam('syncnet_wt', 0.01)
 
-            prog_bar.set_description('L1: {}, Sync Loss: {}'.format(running_l1_loss / (step + 1),
-                                                                    running_sync_loss / (step + 1)))
+            prog_bar.set_description('L1: {}, Sync Loss: {}'.format(running_l1_loss / (step + 1), running_sync_loss / (step + 1)))
 
         global_epoch += 1
 
@@ -325,6 +324,7 @@ def save_checkpoint(model, optimizer, step, checkpoint_dir, epoch):
 
     checkpoint_path = join(checkpoint_dir, "checkpoint_step{:09d}.pth".format(global_step))
     optimizer_state = optimizer.state_dict() if hparams.save_optimizer_state else None
+
     torch.save({
         "state_dict": model.state_dict(),
         "optimizer": optimizer_state,
@@ -349,16 +349,21 @@ def load_checkpoint(path, model, optimizer, reset_optimizer=False, overwrite_glo
 
     print("Load checkpoint from: {}".format(path))
     checkpoint = _load(path)
+
     s = checkpoint["state_dict"]
     new_s = {}
+
     for k, v in s.items():
         new_s[k.replace('module.', '')] = v
+
     model.load_state_dict(new_s)
+
     if not reset_optimizer:
         optimizer_state = checkpoint["optimizer"]
         if optimizer_state is not None:
             print("Load optimizer state from {}".format(path))
             optimizer.load_state_dict(checkpoint["optimizer"])
+
     if overwrite_global_states:
         global_step = checkpoint["global_step"]
         global_epoch = checkpoint["global_epoch"]
@@ -372,9 +377,13 @@ if __name__ == "__main__":
     # Dataset and Dataloader setup
     train_dataset = Dataset('train')
     test_dataset = Dataset('val')
+    print('train_dataset dataset size: {}'.format(len(train_dataset)))
+    print('test_dataset dataset size: {}'.format(len(test_dataset)))
+    # sys.exit(0)
+
+    print(f'batch_size={hparams.batch_size}')
 
     train_data_loader = data_utils.DataLoader(train_dataset, batch_size=hparams.batch_size, shuffle=True, num_workers=hparams.num_workers)
-
     test_data_loader = data_utils.DataLoader(test_dataset, batch_size=hparams.batch_size, num_workers=4)
 
     device = torch.device("cuda" if use_cuda else "cpu")

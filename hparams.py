@@ -1,4 +1,4 @@
-from glob import glob
+from glob import glob # noqa
 import os
 
 
@@ -79,11 +79,11 @@ hparams = HParams(
     # test depending on dataset. Pitch info: male~[65, 260], female~[100, 525])
     fmax=7600,  # To be increased/reduced depending on data.
 
-    ###################### Our training parameters #################################
+    ###################### Our training parameters #################################  # noqa
     img_size=288,
     fps=25,
 
-    batch_size=16,
+    batch_size=4,
     initial_learning_rate=1e-4,
     # ctrl + c, stop whenever eval loss is consistently greater than train loss for ~10 epochs
     nepochs=200000000000000000,
@@ -99,7 +99,7 @@ hparams = HParams(
     syncnet_eval_interval=5000,
     # for testing | 多少步保存一次模型
     # syncnet_checkpoint_interval=5000,
-    syncnet_checkpoint_interval=500,
+    syncnet_checkpoint_interval=5000,
 
     # syncnet_eval_interval=10000,
     # syncnet_checkpoint_interval=10000,
