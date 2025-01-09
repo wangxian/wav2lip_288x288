@@ -8,3 +8,4 @@ results/*
 logs/*
 input/*
 checkpoints/*
+temp/result.avi

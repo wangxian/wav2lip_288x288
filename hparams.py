@@ -100,7 +100,7 @@ hparams = HParams(
     syncnet_eval_interval=5000,
     # for testing | 多少步保存一次模型
     # syncnet_checkpoint_interval=5000,
-    syncnet_checkpoint_interval=5000,
+    syncnet_checkpoint_interval=1000,
 
     # syncnet_eval_interval=10000,
     # syncnet_checkpoint_interval=10000,

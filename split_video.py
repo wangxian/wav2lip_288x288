@@ -30,10 +30,13 @@ for root, dirs, files in os.walk(videos_dir):
 
         video = VideoFileClip(file_path)
         audio = video.audio
+
         audio.write_audiofile('tmp.wav')
         audio_segment = AudioSegment.from_wav('tmp.wav')
+
         silence_intervals = detect_silence(audio_segment, min_silence_len=200, silence_thresh=-45)
         os.remove("tmp.wav")
+
         # 保留静音部分，在静音中间设置切片点
         for i in range(len(silence_intervals)):
             sli_point = (silence_intervals[i][0] + silence_intervals[i][1]) / 2
