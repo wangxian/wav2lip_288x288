@@ -1,0 +1,5 @@
+source_data/*
+preprocessed_data/*
+data/*
+filelists/*
+face_detection/detection/sfd/s3fd.pth

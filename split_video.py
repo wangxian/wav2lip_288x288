@@ -1,10 +1,11 @@
 import os
 from pydub import AudioSegment
 from pydub.silence import detect_silence
-from moviepy.editor import VideoFileClip
+from moviepy import VideoFileClip
 
-videos_dir = "300"
-slices_dir = "300-split"
+videos_dir = "source_data"
+slices_dir = "data"
+
 # 已有的切片
 prev_slices = []
 for root, dirs, files in os.walk(slices_dir):
@@ -14,9 +15,14 @@ prev_slices = set(prev_slices)
 
 for root, dirs, files in os.walk(videos_dir):
     for file in files:
+        # print(f"Processing {file}")
+        # continue
+
         name, extension = os.path.splitext(file)
         if name in prev_slices:
+            print(f"`{file}` already processed")
             continue
+
         if extension != '.mp4':
             continue
 
@@ -38,13 +44,13 @@ for root, dirs, files in os.walk(videos_dir):
         for silence_start, silence_end in silence_intervals:
             end_time = silence_start / 1000.0  # Convert milliseconds to seconds
             if start_time < end_time:
-                clip = video.subclip(start_time, end_time)
+                clip = video.subclipped(start_time, end_time)
             clips.append(clip)
             start_time = silence_end / 1000.0  # Convert milliseconds to seconds
 
         # Add the last segment of the video
         if start_time < video.duration:
-            clips.append(video.subclip(start_time, video.duration))
+            clips.append(video.subclipped(start_time, video.duration))
 
         for i, clip in enumerate(clips):
             if not os.path.exists(os.path.join(slices_dir, name)):
