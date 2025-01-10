@@ -34,8 +34,8 @@ parser.add_argument('--checkpoint_path', help='Resume from this checkpoint', def
 args = parser.parse_args()
 
 
-global_step = 0
-global_epoch = 0
+global_step = 1
+global_epoch = 1
 use_cuda = torch.cuda.is_available()
 print('use_cuda: {}'.format(use_cuda))
 
@@ -225,21 +225,20 @@ def get_sync_loss(mel, g):
     return cosine_loss(a, v, y)
 
 
-def train(device, model, train_data_loader, test_data_loader, optimizer,
-          checkpoint_dir=None, checkpoint_interval=None, nepochs=None):
+def train(device, model, train_data_loader, test_data_loader, optimizer, checkpoint_dir=None, checkpoint_interval=None, nepochs=None):
 
     global global_step, global_epoch
     resumed_step = global_step
 
     while global_epoch < nepochs:
-        print('Starting Epoch: {}'.format(global_epoch))
         running_sync_loss, running_l1_loss = 0., 0.
         prog_bar = tqdm(enumerate(train_data_loader))
+
         for step, (x, indiv_mels, mel, gt) in prog_bar:
             model.train()
             optimizer.zero_grad()
 
-            # Move data to CUDA device
+            # move data to CUDA device
             x = x.to(device)
             mel = mel.to(device)
             indiv_mels = indiv_mels.to(device)
@@ -261,19 +260,21 @@ def train(device, model, train_data_loader, test_data_loader, optimizer,
             if global_step % checkpoint_interval == 0:
                 save_sample_images(x, g, gt, global_step, checkpoint_dir)
 
-            global_step += 1
             cur_session_steps = global_step - resumed_step  # noqa
 
             running_l1_loss += l1loss.item()
+
             if hparams.syncnet_wt > 0.:
                 running_sync_loss += sync_loss.item()
             else:
                 running_sync_loss += 0.
 
-            if global_step == 1 or global_step % checkpoint_interval == 0:
-                save_checkpoint(model, optimizer, global_step, checkpoint_dir, global_epoch)
+            # if global_step == 1 or global_step % checkpoint_interval == 0:
+            if global_step % checkpoint_interval == 0:
+                save_checkpoint(model, optimizer, global_step, checkpoint_dir, global_step)
 
-            if global_step == 1 or global_step % hparams.eval_interval == 0:
+            # if global_step == 1 or global_step % hparams.eval_interval == 0:
+            if global_step % hparams.eval_interval == 0:
                 with torch.no_grad():
                     print(f'global_step={global_step} | eval_model 进行中...')
                     print('--------------------------')
@@ -286,7 +287,8 @@ def train(device, model, train_data_loader, test_data_loader, optimizer,
                         print('average_sync_loss < .75 set hparams.syncnet_wt=0.01')
                         hparams.set_hparam('syncnet_wt', 0.01)
 
-            prog_bar.set_description('L1: {}, Sync Loss: {}'.format(running_l1_loss / (step + 1), running_sync_loss / (step + 1)))
+            prog_bar.set_description('Epoch: {}, Step: {}, L1: {}, Sync Loss: {}'.format(global_epoch, global_step, running_l1_loss / (step + 1), running_sync_loss / (step + 1)))
+            global_step += 1
 
         global_epoch += 1
 
@@ -343,7 +345,8 @@ def save_checkpoint(model, optimizer, step, checkpoint_dir, epoch):
         "global_step": step,
         "global_epoch": epoch,
     }, checkpoint_path)
-    print("Saved checkpoint:", checkpoint_path)
+
+    print(" --- Saved checkpoint:", checkpoint_path)
 
 
 def _load(checkpoint_path):
